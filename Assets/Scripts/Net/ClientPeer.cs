@@ -11,16 +11,26 @@ using System;
 public class ClientPeer{
     private Socket clientSocket = null;
 
+    private string IP;
+    private int Port;
     public ClientPeer(string ip , int port)
     {
+        IP = ip;
+        Port = port;
+
         databuffer = new byte[1024];
         dataCache = new List<byte>();
         msgQueue = new Queue<SocketMsg>();
 
         clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp); 
+        
+    }
+
+    public void Connect()
+    {
         try
         {
-            clientSocket.Connect(IPAddress.Parse(ip), port);
+            clientSocket.Connect(IPAddress.Parse(IP), Port);
             Debug.Log("连接服务器成功");
 
             startReceive();//开始接收数据
@@ -119,10 +129,15 @@ public class ClientPeer{
 
     public void SendMessage(int OpCode , int SubCode , object Value)
     {
+        SocketMsg msg = new SocketMsg(OpCode, SubCode, Value);
 
+        SendMessage(msg);
+    }
+
+    public void SendMessage(SocketMsg msg)
+    {
         try
         {
-            SocketMsg msg = new SocketMsg(OpCode, SubCode, Value);
             byte[] data = EncodeTool.EncodeSocketMgr(msg);
             byte[] packet = EncodeTool.EncodeMessage(data);
 

@@ -34,7 +34,7 @@ public class ManagerBase : MonoBase {
         if (!dictionary.ContainsKey(eventcode))
         {
             //如果事件码没有注册过
-            Debug.LogWarning("事件码没有注册：" + eventcode);
+            Debug.Log("事件码没有注册：" + eventcode);
             return;
         }
 

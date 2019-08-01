@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Protocol.Code;
+using Protocol.Models;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,8 @@ public class RegisterPanel : UIBase {
     private InputField input_PWD;
     private InputField input_Repeat;
 
+    private AccountModle account = null;
+    private SocketMsg msg = null;
     // Use this for initialization
     void Start () {
         BTN_Register = transform.Find("BTN_Register").GetComponent<Button>();
@@ -39,6 +43,8 @@ public class RegisterPanel : UIBase {
     private void Awake()
     {
         Bind(UIEvent.REGISTER_PANEL_EVENTCODE);
+        account = new AccountModle();
+        msg = new SocketMsg();
     }
 
     public override void OnDestroy()
@@ -65,6 +71,14 @@ public class RegisterPanel : UIBase {
         {
             return;
         }
+
+
+        account.Account = input_Account.text;
+        account.Password = input_PWD.text;
+        msg.OpCode = OpCode.ACCOUNT;
+        msg.SubCode = AccountCode.LOGIN_CREQ;
+        msg.Value = account;
+        MsgCenter.Instance.Dispatch(AreoCode.NET, NetEvent.SENDMSG, msg);
     }
 
     private void backBtnClicker()

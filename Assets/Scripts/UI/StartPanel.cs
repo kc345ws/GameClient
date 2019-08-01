@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Protocol.Models;
+using Protocol.Code;
 
 public class StartPanel : UIBase {
     private Button BTN_Login;
     private Button BTN_Back;
     private InputField input_Account;
     private InputField input_PWD;
+
+    private AccountModle account = null;
+    private SocketMsg msg = null;
     // Use this for initialization
     void Start () {
         BTN_Login = transform.Find("BTN_Login").GetComponent<Button>();
@@ -24,6 +29,8 @@ public class StartPanel : UIBase {
     private void Awake()
     {
         Bind(UIEvent.START_PANEL_EVENTCODE);
+        account = new AccountModle();
+        msg = new SocketMsg();
     }
 
     public override void Execute(int eventcode, object message)
@@ -53,6 +60,14 @@ public class StartPanel : UIBase {
         {
             return;
         }
+
+
+        account.Account = input_Account.text;
+        account.Password = input_PWD.text;
+        msg.OpCode = OpCode.ACCOUNT;
+        msg.SubCode = AccountCode.LOGIN_CREQ;
+        msg.Value = account;
+        MsgCenter.Instance.Dispatch(AreoCode.NET, NetEvent.SENDMSG, msg);
     }
 
     private void backBtnClicker()

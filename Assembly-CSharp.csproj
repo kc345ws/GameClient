@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Framework\MsgCenter.cs" />
     <Compile Include="Assets\Scripts\Net\ClientPeer.cs" />
     <Compile Include="Assets\Scripts\Net\EncodeTool.cs" />
+    <Compile Include="Assets\Scripts\Net\NetEvent.cs" />
     <Compile Include="Assets\Scripts\Net\NetManager.cs" />
     <Compile Include="Assets\Scripts\Net\SocketMsg.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerPanel.cs" />
@@ -284,6 +285,9 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>D:/Program Files/Unity2018.2.17/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
+    </Reference>
+    <Reference Include="Protocol">
+      <HintPath>D:/Downloads/Unity3D/CardGame/Assets/Plugins/Protocol.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>C:/Users/Administrator/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>

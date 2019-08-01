@@ -2,23 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 网络消息转发中心
+/// </summary>
 public class NetManager : ManagerBase {
     public static NetManager Instance = null;
 
     private ClientPeer client = null;
 
-    public void Connected(string ip , int port)
+    public override void Execute(int eventcode, object message)
     {
-        client = new ClientPeer(ip, port);
+        
+        switch (eventcode)
+        {
+            case NetEvent.SENDMSG:
+                client.SendMessage(message as SocketMsg);
+                break;
+        }
+    }
+
+    public NetManager()
+    {
+        client = new ClientPeer("127.0.0.1", 59800);  
     }
 
     void Awake()
     {
-        Instance = null;
+        Instance = this;
+
+        Add(NetEvent.SENDMSG, this);
+        Add(NetEvent.RECEIVEMSG, this);
     }
     // Use this for initialization
     void Start () {
-        Connected("127.0.0.1", 59800);
+        client.Connect();
 	}
 	
 	// Update is called once per frame
