@@ -67,10 +67,13 @@
     <Compile Include="Assets\Scripts\Framework\MsgCenter.cs" />
     <Compile Include="Assets\Scripts\Net\ClientPeer.cs" />
     <Compile Include="Assets\Scripts\Net\EncodeTool.cs" />
+    <Compile Include="Assets\Scripts\Net\HandleBase.cs" />
+    <Compile Include="Assets\Scripts\Net\implement\AccountHandle.cs" />
     <Compile Include="Assets\Scripts\Net\NetEvent.cs" />
     <Compile Include="Assets\Scripts\Net\NetManager.cs" />
     <Compile Include="Assets\Scripts\Net\SocketMsg.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\PromptPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RegisterPanel.cs" />
     <Compile Include="Assets\Scripts\UI\StartPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />

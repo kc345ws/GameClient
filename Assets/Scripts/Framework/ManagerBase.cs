@@ -29,7 +29,6 @@ public class ManagerBase : MonoBase {
     /// <param name="message">消息</param>
     public override void Execute(int eventcode, object message)
     {
-        base.Execute(eventcode, message);
 
         if (!dictionary.ContainsKey(eventcode))
         {

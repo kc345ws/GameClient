@@ -1,5 +1,5 @@
 ﻿using Protocol.Code;
-using Protocol.Models;
+using Protocol.Dto;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +12,7 @@ public class RegisterPanel : UIBase {
     private InputField input_PWD;
     private InputField input_Repeat;
 
-    private AccountModle account = null;
+    private AccountDto account = null;
     private SocketMsg msg = null;
     // Use this for initialization
     void Start () {
@@ -43,7 +43,7 @@ public class RegisterPanel : UIBase {
     private void Awake()
     {
         Bind(UIEvent.REGISTER_PANEL_EVENTCODE);
-        account = new AccountModle();
+        account = new AccountDto();
         msg = new SocketMsg();
     }
 
@@ -59,24 +59,30 @@ public class RegisterPanel : UIBase {
     {
         if (string.IsNullOrEmpty(input_Account.text))
         {
+            MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "帐号不能为空");
             return;
         }
-        if (string.IsNullOrEmpty(input_PWD.text) || input_PWD.text.Length < 6
+        if (input_PWD.text.Length < 6
             || input_Account.text.Length > 16)
         {
+            MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "密码必须大于6位且小于16位");
+            return;
+        }
+        if (string.IsNullOrEmpty(input_PWD.text))
+        {
+            MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "密码不能为空");
             return;
         }
         if (string.IsNullOrEmpty(input_Repeat.text) ||
             !input_PWD.text.Equals(input_Repeat.text))
         {
+            MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "两次密码输入不一致");
             return;
-        }
-
-
+        }    
         account.Account = input_Account.text;
         account.Password = input_PWD.text;
         msg.OpCode = OpCode.ACCOUNT;
-        msg.SubCode = AccountCode.LOGIN_CREQ;
+        msg.SubCode = AccountCode.REGISTER_CREQ;
         msg.Value = account;
         MsgCenter.Instance.Dispatch(AreoCode.NET, NetEvent.SENDMSG, msg);
     }

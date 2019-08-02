@@ -26,6 +26,10 @@ public class ClientPeer{
         
     }
 
+    #region 连接
+    /// <summary>
+    /// 客户端向服务器发起连接
+    /// </summary>
     public void Connect()
     {
         try
@@ -41,7 +45,7 @@ public class ClientPeer{
             throw;
         }
     }
-
+    #endregion
 
     #region 接受数据
     /// <summary>
@@ -66,7 +70,7 @@ public class ClientPeer{
     /// </summary>
     private void startReceive()
     {
-        if (clientSocket == null && clientSocket.Connected)
+        if (clientSocket == null && clientSocket.Connected == false)
         {
             Debug.Log("服务器连接失败，无法接受消息");
             return;
@@ -79,7 +83,8 @@ public class ClientPeer{
         }
         catch (System.Exception e)
         {
-            Debug.LogWarning(e.Message);
+            Debug.Log(e.Message);
+            throw;
         }
     }
 
@@ -89,16 +94,28 @@ public class ClientPeer{
     /// <param name="ar"></param>
     private void receiveCallback(IAsyncResult ar)
     {
-        int length = clientSocket.EndReceive(ar);
-        byte[] tmpbuffer = new byte[length];
-        Buffer.BlockCopy(databuffer, 0, tmpbuffer, 0, length);
-
-        dataCache.AddRange(tmpbuffer);
-
-        if (!isprocessReceive)
+        try
         {
-            processReceive();
+            int length = clientSocket.EndReceive(ar);
+            byte[] tmpbuffer = new byte[length];
+            Buffer.BlockCopy(databuffer, 0, tmpbuffer, 0, length);
+
+            dataCache.AddRange(tmpbuffer);
+
+            if (isprocessReceive == false)
+            {
+                processReceive();
+            }
+
+            startReceive();
         }
+        catch (Exception e)
+        {
+            Debug.Log(e.Message);
+            throw;
+        } 
+        //尾递归
+        
     }
 
     /// <summary>
@@ -112,18 +129,20 @@ public class ClientPeer{
 
         if(data == null)
         {
+            isprocessReceive = false;
             return;
         }
 
         SocketMsg msg = EncodeTool.DeCodeSocketMgr(data);
+
+        Debug.Log(msg.Value);
+
         msgQueue.Enqueue(msg);//保存到消息列表中
 
         //尾递归
-        startReceive();
+        processReceive();
     }
-
     #endregion
-
 
     #region 发送数据
 
@@ -150,4 +169,5 @@ public class ClientPeer{
     }
 
     #endregion
+
 }

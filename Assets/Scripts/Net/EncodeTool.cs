@@ -56,7 +56,7 @@ using System.Text;
                 {
                     int length = br.ReadInt32();//数据实际长度
                     int restlength = (int)(ms.Length - ms.Position);//剩余长度
-                    if (length > restlength)
+                if (length > restlength)
                     {
                         //throw new Exception("剩余数据无法构成一个完成数据包");
                         return null;
@@ -111,15 +111,18 @@ using System.Text;
                 {
                     int OpCode = br.ReadInt32();
                     int SubCode = br.ReadInt32();
-                    if(ms.Length > ms.Position)
-                    {
-                        //如果还有剩余数据
-                        object value = DecodeObj(br.ReadBytes((int)(ms.Length - ms.Position)));
-                    }
                     SocketMsg socketMgr = new SocketMsg();
                     socketMgr.OpCode = OpCode;
                     socketMgr.SubCode = SubCode;
-                    //socketMgr.Value
+                if (ms.Length > ms.Position)
+                    {
+                        //如果还有剩余数据
+                        object value = DecodeObj(br.ReadBytes((int)(ms.Length - ms.Position)));
+
+                        socketMgr.Value = value;
+                }
+                
+                    
                     return socketMgr;
                 }
             }
