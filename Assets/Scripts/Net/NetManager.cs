@@ -81,6 +81,10 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
                 AccountHandle.Instance.Dispatch(AreoCode.UI, socketMsg.SubCode, socketMsg.Value);
                 break;
 
+            case AreoCode.SCENE:
+                AccountHandle.Instance.Dispatch(AreoCode.SCENE, socketMsg.SubCode, socketMsg.Value);
+                break;
+
             default:
                 break;
         }

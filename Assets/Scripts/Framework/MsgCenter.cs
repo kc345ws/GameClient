@@ -16,6 +16,7 @@ public class MsgCenter : MonoBase {
 
         gameObject.AddComponent<UIManager>();
         gameObject.AddComponent<NetManager>();
+        gameObject.AddComponent<SceneMgr>();
     }
 
     /// <summary>
@@ -37,6 +38,10 @@ public class MsgCenter : MonoBase {
 
             case AreoCode.NET:
                 NetManager.Instance.Execute(eventcode, message);
+                break;
+
+            case AreoCode.SCENE:
+                SceneMgr.Instance.Execute(eventcode, message);
                 break;
         }
     }

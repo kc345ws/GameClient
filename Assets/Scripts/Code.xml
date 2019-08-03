@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Codes>
+  
+  <Code>
+    <name>Opcode</name>
+    <range>0-99</range>
+    <content>
+      //帐号模块
+      public const int ACCOUNT = 0;
+    </content>
+  </Code>
+
+  <Code>
+    <name>UIEvent</name>
+    <range>100-199</range>
+    <content>
+      //开始面板事件
+      public const int START_PANEL_EVENTCODE = 100;
+      //注册面板事件
+      public const int REGISTER_PANEL_EVENTCODE = 101;
+      //提示面板事件
+      public const int PROMPT_PANEL_EVENTCODE = 102;
+    </content>
+  </Code>
+
+  <Code>
+    <name>NetEvent</name>
+    <range>200-299</range>
+    <content>
+        /// 发送网络消息
+      public const int SENDMSG = 200;
+
+        /// 接受网络消息
+      public const int RECEIVEMSG = 201;
+    </content>
+  </Code>
+
+  <Code>
+    <name>AreoCode</name>
+    <range>300-399</range>
+    <content>
+        /// UI模块
+      public const int UI = 300;
+
+        /// GAME模块
+      public const int GAME = 301;
+
+        /// CHARACTER模块
+      public const int CHARACTER = 302;
+
+        /// NET模块
+      public const int NET = 303;
+
+        /// AUDIO模块
+      public const int AUDIO = 304;
+
+        /// 场景模块
+      public const int SCENE = 305;
+    </content>
+  </Code>
+
+  <Code>
+    <name>AccountCode</name>
+    <range>400-499</range>
+    <content>
+        /// 客户端帐号注册请求
+      public const int REGISTER_CREQ = 400;
+
+        /// 服务器帐号注册回复
+      public const int REGISTER_SRES = 401;
+
+        /// 客户端帐号登陆请求
+      public const int LOGIN_CREQ = 402;
+
+        /// 服务器帐号登陆回复
+      public const int LOGIN_SRES = 403;
+    </content>
+  </Code>
+
+  <Code>
+    <name>SceneCode</name>
+    <range>500-599</range>
+    <content>
+      /// 加载场景
+      public const int LOAD_SCENE = 500;
+    </content>
+  </Code>
+  
+</Codes>

@@ -24,12 +24,15 @@ public class AreoCode{
     /// <summary>
     /// NET模块
     /// </summary>
-    public const int NET = 3;
+    public const int NET = 303;
 
     /// <summary>
     /// AUDIO模块
     /// </summary>
-    public const int AUDIO = 4;
+    public const int AUDIO = 304;
 
-    //....
+    /// <summary>
+    /// 场景模块
+    /// </summary>
+    public const int SCENE = 305;
 }

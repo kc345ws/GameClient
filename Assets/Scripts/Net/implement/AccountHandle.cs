@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Protocol.Code;
+using UnityEngine;
 
 namespace Assets.Scripts.Net.implement
 {
@@ -12,6 +13,9 @@ namespace Assets.Scripts.Net.implement
     public class AccountHandle : HandleBase
     {
         private static AccountHandle instance = null;
+        private SceneLoadMsg loadMsg = new SceneLoadMsg();
+
+        
         public static AccountHandle Instance
         {
             get
@@ -50,11 +54,17 @@ namespace Assets.Scripts.Net.implement
         /// </summary>
         /// <param name="result"></param>
         private void loginResponse(object result)
-        {
+        {  
             string str = result.ToString();
             if(str == "登陆成功")
             {
-                //TODO 跳转场景
+                loadMsg.Change(1, "02_Main", () =>
+                 {
+                     //TODO 从服务器获取玩家信息
+                     Debug.Log("切换场景成功");
+                 });
+                //TODO 跳转场景 
+                MsgCenter.Instance.Dispatch(AreoCode.SCENE, SceneCode.LOAD_SCENE, "123");
             }
 
             else

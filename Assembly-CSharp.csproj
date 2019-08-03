@@ -72,6 +72,9 @@
     <Compile Include="Assets\Scripts\Net\NetEvent.cs" />
     <Compile Include="Assets\Scripts\Net\NetManager.cs" />
     <Compile Include="Assets\Scripts\Net\SocketMsg.cs" />
+    <Compile Include="Assets\Scripts\Scene\SceneCode.cs" />
+    <Compile Include="Assets\Scripts\Scene\SceneLoadMsg.cs" />
+    <Compile Include="Assets\Scripts\Scene\SceneMgr.cs" />
     <Compile Include="Assets\Scripts\UI\PlayerPanel.cs" />
     <Compile Include="Assets\Scripts\UI\PromptPanel.cs" />
     <Compile Include="Assets\Scripts\UI\RegisterPanel.cs" />
@@ -79,6 +82,7 @@
     <Compile Include="Assets\Scripts\UI\UIBase.cs" />
     <Compile Include="Assets\Scripts\UI\UIEvent.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
+    <None Include="Assets\Scripts\Code.xml" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/Downloads/Unity3D/CardGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
