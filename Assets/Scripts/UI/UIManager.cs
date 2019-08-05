@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIManager : ManagerBase {
 
-    public static UIManager Instance = null;
+    public static UIManager Instance;
 
     private void Awake()
     {

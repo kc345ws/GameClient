@@ -20,22 +20,21 @@ public class SceneMgr : ManagerBase {
 
     private void Start()
     {
-        loadMsg = new SceneLoadMsg();
+        //loadMsg = new SceneLoadMsg();
     }
 
     public override void Execute(int eventcode, object message)
     {
-        string str;
+        //string str;
         switch (eventcode)
         {
             case SceneCode.LOAD_SCENE:
-                str = message as string;
-                loadMsg.Change(1, "02_Main", () => {
-                    //TODO 从服务器接受消息
-                    Debug.Log("切换场景"); });
-                //loadScene(loadMsg);
+                //str = message as string;
+                //loadMsg.Change(1, "02_Main", SceneManager.sceneLoaded);
+                loadMsg = message as SceneLoadMsg;
+                loadMsg.Change(loadMsg.Index, loadMsg.Name, loadMsg.LoadAction);
                 StartCoroutine(loadScene(loadMsg));
-                MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, str);
+                //MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "切换场景成功");
                 break;
         }
     }
@@ -46,11 +45,11 @@ public class SceneMgr : ManagerBase {
         if(loadMsg.Index != -1)
         {
 
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene(loadMsg.Index);    
         }else if (loadMsg.Name != null)
         {
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(1f);
             SceneManager.LoadScene(loadMsg.Name);            
         }
         

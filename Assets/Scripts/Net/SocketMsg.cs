@@ -5,6 +5,7 @@ using System.Text;
     /// <summary>
     /// 网络消息传递类
     /// </summary>
+    /// 
     public class SocketMsg
     {
         /// <summary>
@@ -33,5 +34,14 @@ using System.Text;
             SubCode = subcode;
             Value = value;
         }
+
+        public void Change(int opcode, int subcode, object value)
+        {
+        OpCode = opcode;
+        SubCode = subcode;
+        Value = value;
+    }
+
+
     }
 

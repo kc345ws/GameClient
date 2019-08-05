@@ -27,9 +27,10 @@ public class PromptPanel : UIBase {
 
 	// Use this for initialization
 	void Start () {
-        Bind(UIEvent.PROMPT_PANEL_EVENTCODE);
+        /*Bind(UIEvent.PROMPT_PANEL_EVENTCODE);
         Bind(AccountCode.LOGIN_SRES);
-        Bind(AccountCode.REGISTER_SRES);
+        Bind(AccountCode.REGISTER_SRES);*/
+        Bind(UIEvent.PROMPT_PANEL_EVENTCODE, AccountCode.LOGIN_SRES, AccountCode.REGISTER_SRES);
 
         TXT_Prompt = transform.Find("TXT_Prompt").GetComponent<Text>();
 
@@ -77,6 +78,11 @@ public class PromptPanel : UIBase {
         TXT_Prompt.text = str;
         gameObject.SetActive(true);
         StartCoroutine(ShowText());
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 
     IEnumerator ShowText()

@@ -78,11 +78,19 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
         switch (socketMsg.OpCode)
         {
             case OpCode.ACCOUNT:
-                AccountHandle.Instance.Dispatch(AreoCode.UI, socketMsg.SubCode, socketMsg.Value);
+
+                //AccountHandler.Instance.Dispatch(AreoCode.UI, socketMsg.SubCode, socketMsg.Value);
+                //应该接收消息
+                AccountHandler.Instance.OnReceive(socketMsg.SubCode, socketMsg.Value);
                 break;
 
-            case AreoCode.SCENE:
-                AccountHandle.Instance.Dispatch(AreoCode.SCENE, socketMsg.SubCode, socketMsg.Value);
+            /*case AreoCode.SCENE:
+                AccountHandler.Instance.Dispatch(AreoCode.SCENE, socketMsg.SubCode, socketMsg.Value);
+                break;*/
+
+            case OpCode.USER:
+                //UserHandler.Instance.Dispatch(AreoCode.UI, socketMsg.SubCode, socketMsg.Value);
+                UserHandler.Instance.OnReceive(socketMsg.SubCode, socketMsg.Value);
                 break;
 
             default:

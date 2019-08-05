@@ -111,7 +111,7 @@ public class ClientPeer{
         }
         catch (Exception e)
         {
-            Debug.Log(e.Message);
+            Debug.LogError(e.Message);
             throw;
         } 
         //尾递归
