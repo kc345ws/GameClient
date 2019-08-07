@@ -5,8 +5,14 @@
     <name>Opcode</name>
     <range>0-99</range>
     <content>
-      //帐号模块
+        /// 帐号模块
       public const int ACCOUNT = 0;
+
+        /// 角色模块
+      public const int USER = 1;
+
+        /// 匹配模块
+      public const int MATCH = 2;
     </content>
   </Code>
 
@@ -20,10 +26,39 @@
       public const int REGISTER_PANEL_EVENTCODE = 101;
       //提示面板事件
       public const int PROMPT_PANEL_EVENTCODE = 102;
+      //角色信息面板事件
+      public const int INFO_PANEL_EVENTCODE = 103;
       //显示进入房间按钮
       public const int SHOW_ROOM_ENTER_BUTTON = 104;
       //显示创建面板
       public const int SHOW_CREATE_PANEL = 105;
+
+
+      //设置底牌
+      public const int SET_TABLE_CARD = 106;
+
+      //玩家准备
+      public const int PLAYER_READY = 107;
+      //玩家进入
+      public const int PLAYER_ENTER = 108;
+      //玩家离开
+      public const int PLAYER_LEAVE = 109;
+      //玩家改变身份
+      public const int PLAYER_CHANGE_IDENTITY = 110;
+      //设置左边玩家的数据
+      public const int SET_LEFT_PLAYER = 111;
+      //角色聊天
+      public const int PLAYER_CHAT = 112;
+      //开始游戏,隐藏角色面板
+      public const int PLAYER_HIDE_STATE = 113;
+      //设置右边玩家的数据
+      public const int SET_RIGHT_PLAYER = 114;
+      //显示抢按钮
+      public const int SHOW_GRAB_BUTTON = 115;
+      //显示出牌按钮
+      public const int SHOW_DEAL_BUTTON = 116;
+      //设置自身用户信息
+      public const int SET_MY_PLAYER_STATE = 117;
     </content>
   </Code>
 
@@ -105,6 +140,27 @@
       //角色上线
       public const int LOGIN_USER_CREQ = 604;
       public const int LOGIN_USER_SRES = 605;
+    </content>
+  </Code>
+  
+  <Code>
+    <name>MatchCode</name>
+    <range>700-799</range>
+    <content>
+      //进入匹配队列
+      public const int ENTER_CREQ = 700;//某个客户端请求进入匹配队列
+      public const int ENTER_SRES = 701;//服务器回复客户端请求
+
+      //离开匹配队列
+      public const int LEAVE_CREQ = 702;//某个客户端请求离开匹配队列
+      public const int LEAVE_BOD = 703;//服务器通知所有匹配队列中的客户端有客户端离开匹配队列
+
+      //准备
+      public const int READY_CREQ = 704;//客户端请求准备
+      public const int READY_BOD = 705;//服务器通知所有匹配队列中的客户端有客户端准备了
+
+      //开始游戏
+      public const int START_GAME_BOD = 706;//当匹配队列中的所有客户端都准备时，服务器向所有客户端发送开始游戏操作码
     </content>
   </Code>
   

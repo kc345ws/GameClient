@@ -26,6 +26,8 @@ public class GameModles
 
     public UserDto userDto { get; set; }
 
+    public MatchRoomDto matchRoomDto { get; set; }
+
     private GameModles()
     {
 

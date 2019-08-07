@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Net\EncodeTool.cs" />
     <Compile Include="Assets\Scripts\Net\HandlerBase.cs" />
     <Compile Include="Assets\Scripts\Net\implement\AccountHandler.cs" />
+    <Compile Include="Assets\Scripts\Net\implement\MatchHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\UserHandler.cs" />
     <Compile Include="Assets\Scripts\Net\NetEvent.cs" />
     <Compile Include="Assets\Scripts\Net\NetManager.cs" />
@@ -77,17 +78,22 @@
     <Compile Include="Assets\Scripts\Scene\SceneCode.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneLoadMsg.cs" />
     <Compile Include="Assets\Scripts\Scene\SceneMgr.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\PlayerPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\PromptPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\RegisterPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\StartPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\UIBase.cs" />
+    <Compile Include="Assets\Scripts\UI\01_Login\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\CreatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\MatchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\SettingPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\PlayerPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\PromptPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\RegisterPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\StartPanel.cs" />
-    <Compile Include="Assets\Scripts\UI\UIBase.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\LeftStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\MyStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\RightStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\StatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\UpPanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIEvent.cs" />
-    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <None Include="Assets\Scripts\Code.xml" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/Downloads/Unity3D/CardGame/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
