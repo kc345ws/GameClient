@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Protocol.Dto;
 using System;
+using Protocol.Dto.Fight;
 
 /// <summary>
 /// 所有人都共同功能的提取
@@ -75,6 +76,13 @@ public class StatePanel : UIBase
                 processPlayerEvent(uid,
                     () => { Text_Ready.gameObject.SetActive(true); });
                 break;
+
+            case UIEvent.PLAYER_CHAT:
+                ChatDto chatDto = message as ChatDto;
+                processPlayerEvent(chatDto.UserID,()=> {
+                    setChatText(chatDto.ChatText);
+                });
+                break;
         }
     }
 
@@ -109,6 +117,7 @@ public class StatePanel : UIBase
     protected virtual void Awake()
     {
         Bind(UIEvent.PLAYER_READY, UIEvent.PLAYER_ENTER, UIEvent.PLAYER_LEAVE, UIEvent.PLAYER_HIDE_STATE);
+        Bind(UIEvent.PLAYER_CHAT);
     }
 
     /// <summary>

@@ -97,6 +97,10 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
                 MatchHandler.Instance.OnReceive(socketMsg.SubCode, socketMsg.Value);
                 break;
 
+            case OpCode.CHAT:
+                ChatHandler.Instance.OnReceive(socketMsg.SubCode, socketMsg.Value);
+                break;
+
             default:
                 break;
         }

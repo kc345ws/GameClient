@@ -54,4 +54,9 @@ public class RightStatePanel : StatePanel
             SetPanelActive(false);
         }
     }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Protocol.Dto;
+using Protocol.Code;
 
 public class MyStatePanel : StatePanel
 {
@@ -11,6 +12,8 @@ public class MyStatePanel : StatePanel
     private Button Button_NoGrab;//不抢
     private Button Button_Deal;//出牌
     private Button Button_NoDeal;//不出
+
+    private SocketMsg SocketMsg;
 
     public override void Execute(int eventcode, object message)
     {
@@ -76,6 +79,7 @@ public class MyStatePanel : StatePanel
     protected override void Start()
     {
         base.Start();
+        SocketMsg = new SocketMsg();
         Button_Ready = transform.Find("Button_Ready").GetComponent<Button>();
         Button_Grab = transform.Find("Button_Grab").GetComponent<Button>();
         Button_NoGrab = transform.Find("Button_NoGrab").GetComponent<Button>();
@@ -110,7 +114,13 @@ public class MyStatePanel : StatePanel
 
     private void readyBtnClicker()
     {
-
+        //隐藏准备按钮   
+        Button_Ready.gameObject.SetActive(false);
+        //显示已准备文字
+        Text_Ready.gameObject.SetActive(true);
+        //向服务器发送玩家准备
+        SocketMsg.Change(OpCode.MATCH, MatchCode.READY_CREQ, GameModles.Instance.userDto.ID);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, SocketMsg);      
     }
 
     private void grabBtnClicker()
@@ -133,10 +143,9 @@ public class MyStatePanel : StatePanel
 
     }
 
-    // Update is called once per frame
     protected override void Update()
     {
-        
+        base.Update();
     }
 
     protected override void Awake()

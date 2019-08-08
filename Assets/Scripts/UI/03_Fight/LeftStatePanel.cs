@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Protocol.Dto;
+using Protocol.Dto.Fight;
 
 /// <summary>
 /// 左边玩家的状态面板
@@ -54,6 +55,11 @@ public class LeftStatePanel:StatePanel
         {
             SetPanelActive(false);
         }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
     }
 }
 

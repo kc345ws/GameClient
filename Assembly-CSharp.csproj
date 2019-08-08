@@ -61,6 +61,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Audio\AudioBase.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioEvent.cs" />
+    <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\EffectAudio.cs" />
     <Compile Include="Assets\Scripts\Framework\AreoCode.cs" />
     <Compile Include="Assets\Scripts\Framework\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Framework\MonoBase.cs" />
@@ -70,6 +74,7 @@
     <Compile Include="Assets\Scripts\Net\EncodeTool.cs" />
     <Compile Include="Assets\Scripts\Net\HandlerBase.cs" />
     <Compile Include="Assets\Scripts\Net\implement\AccountHandler.cs" />
+    <Compile Include="Assets\Scripts\Net\implement\ChatHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\MatchHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\UserHandler.cs" />
     <Compile Include="Assets\Scripts\Net\NetEvent.cs" />
@@ -88,6 +93,7 @@
     <Compile Include="Assets\Scripts\UI\02_Main\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\MatchPanel.cs" />
     <Compile Include="Assets\Scripts\UI\02_Main\SettingPanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\ButtonPanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\LeftStatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\MyStatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\RightStatePanel.cs" />

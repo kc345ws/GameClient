@@ -59,6 +59,11 @@
       public const int SHOW_DEAL_BUTTON = 116;
       //设置自身用户信息
       public const int SET_MY_PLAYER_STATE = 117;
+
+      //左边玩家加载完成
+      public const int LEFT_PLAYER_LOADED = 118;
+      //右边玩家加载完成
+      public const int RIGHT_PLAYER_LOADED = 119;
     </content>
   </Code>
 
@@ -163,5 +168,24 @@
       public const int START_GAME_BOD = 706;//当匹配队列中的所有客户端都准备时，服务器向所有客户端发送开始游戏操作码
     </content>
   </Code>
+
+  <Code>
+    <name>ChatCode</name>
+    <range>800-899</range>
+    <content>
+      public const int RECEIVE = 800;
+      public const int SEND = 801;
+    </content>
+  </Code>
+
+  <Code>
+    <name>AudioEvent</name>
+    <range>900-999</range>
+    <content>
+      public const int PLAY_EFFECT_AUDIO = 900;//特效音效
+      public const int PLAY_BG_AUDIO = 901;//背景音乐音效
+    </content>
+  </Code>
+  
   
 </Codes>
