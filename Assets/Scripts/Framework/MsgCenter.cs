@@ -18,6 +18,7 @@ public class MsgCenter : MonoBase {
         gameObject.AddComponent<NetManager>();
         gameObject.AddComponent<SceneMgr>();
         gameObject.AddComponent<AudioManager>();
+        gameObject.AddComponent<CharacterManager>();
 
         DontDestroyOnLoad(gameObject);
     }
@@ -49,6 +50,10 @@ public class MsgCenter : MonoBase {
 
             case AreoCode.AUDIO:
                 AudioManager.Instance.Execute(eventcode, message);
+                break;
+
+            case AreoCode.CHARACTER:
+                CharacterManager.Instance.Execute(eventcode, message);
                 break;
         }
     }

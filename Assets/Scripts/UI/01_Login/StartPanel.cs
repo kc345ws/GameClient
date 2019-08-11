@@ -60,11 +60,11 @@ public class StartPanel : UIBase {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "帐号或密码不能为空");
             return;
         }
-        if(input_PWD.text.Length < 6 || input_PWD.text.Length > 16)
+        /*if(input_PWD.text.Length < 6 || input_PWD.text.Length > 16)
         {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "密码必须大于6位且小于16位");
             return;
-        }
+        }*/
 
 
         account.Account = input_Account.text;

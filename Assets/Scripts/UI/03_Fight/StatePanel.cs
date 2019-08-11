@@ -67,14 +67,10 @@ public class StatePanel : UIBase
                 break;
 
             case UIEvent.PLAYER_HIDE_STATE://隐藏准备文字
-                uid = (int)message;
-                /*if (uid == userDto.ID)//为了区别左右玩家
-                {
-                    //如果收到左边玩家准备的服务器广播
-                    Text_Ready.gameObject.SetActive(true);
-                }*/
-                processPlayerEvent(uid,
-                    () => { Text_Ready.gameObject.SetActive(true); });
+                //uid = (int)message;
+                    Text_Ready.gameObject.SetActive(false);
+                /*processPlayerEvent(uid,
+                    () => { Text_Ready.gameObject.SetActive(true); });*/
                 break;
 
             case UIEvent.PLAYER_CHAT:

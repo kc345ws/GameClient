@@ -65,6 +65,13 @@
     <Compile Include="Assets\Scripts\Audio\AudioEvent.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectAudio.cs" />
+    <Compile Include="Assets\Scripts\Character\CardCtrl.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterBase.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterEvent.cs" />
+    <Compile Include="Assets\Scripts\Character\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Character\LeftCharacterCtrl.cs" />
+    <Compile Include="Assets\Scripts\Character\MyCharacterCtrl.cs" />
+    <Compile Include="Assets\Scripts\Character\RightCharacterCtrl.cs" />
     <Compile Include="Assets\Scripts\Framework\AreoCode.cs" />
     <Compile Include="Assets\Scripts\Framework\ManagerBase.cs" />
     <Compile Include="Assets\Scripts\Framework\MonoBase.cs" />
@@ -75,6 +82,7 @@
     <Compile Include="Assets\Scripts\Net\HandlerBase.cs" />
     <Compile Include="Assets\Scripts\Net\implement\AccountHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\ChatHandler.cs" />
+    <Compile Include="Assets\Scripts\Net\implement\FightHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\MatchHandler.cs" />
     <Compile Include="Assets\Scripts\Net\implement\UserHandler.cs" />
     <Compile Include="Assets\Scripts\Net\NetEvent.cs" />

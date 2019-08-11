@@ -62,12 +62,12 @@ public class RegisterPanel : UIBase {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "帐号不能为空");
             return;
         }
-        if (input_PWD.text.Length < 6
+        /*if (input_PWD.text.Length < 6
             || input_Account.text.Length > 16)
         {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "密码必须大于6位且小于16位");
             return;
-        }
+        }*/
         if (string.IsNullOrEmpty(input_PWD.text))
         {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "密码不能为空");

@@ -165,7 +165,8 @@ namespace Assets.Scripts.Net.implement
         private void START_GAME_BOD()
         {
             //更新游戏场景 隐藏准备文字
-            Dispatch(AreoCode.UI, UIEvent.PLAYER_HIDE_STATE, GameModles.Instance.userDto.ID);
+            //Dispatch(AreoCode.UI, UIEvent.PLAYER_HIDE_STATE, GameModles.Instance.userDto.ID);
+            Dispatch(AreoCode.UI, UIEvent.PLAYER_HIDE_STATE, "隐藏准备文字");
             Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "游戏即将开始");
         }
     }
