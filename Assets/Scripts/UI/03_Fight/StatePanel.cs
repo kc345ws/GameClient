@@ -79,6 +79,15 @@ public class StatePanel : UIBase
                     setChatText(chatDto.ChatText);
                 });
                 break;
+
+            case UIEvent.PLAYER_CHANGE_IDENTITY:
+                uid = (int)message;
+                processPlayerEvent(uid,
+                    () =>
+                    {
+                        setIdentity(1);
+                    });
+                break;
         }
     }
 
@@ -103,6 +112,7 @@ public class StatePanel : UIBase
         Text_Ready = transform.Find("Text_Ready").GetComponent<Text>();
         Text_chat = Image_chat.transform.Find("Text_chat").GetComponent<Text>();
 
+        setIdentity(0);
 
         Image_chat.gameObject.SetActive(false);
         Text_Ready.gameObject.SetActive(false);
@@ -114,6 +124,7 @@ public class StatePanel : UIBase
     {
         Bind(UIEvent.PLAYER_READY, UIEvent.PLAYER_ENTER, UIEvent.PLAYER_LEAVE, UIEvent.PLAYER_HIDE_STATE);
         Bind(UIEvent.PLAYER_CHAT);
+        Bind(UIEvent.PLAYER_CHANGE_IDENTITY);
     }
 
     /// <summary>

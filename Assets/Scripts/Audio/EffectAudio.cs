@@ -31,15 +31,24 @@ public class EffectAudio : AudioBase
         switch (eventcode)
         {
             case AudioEvent.PLAY_EFFECT_AUDIO:
-                playChatEffect((int)message);
+                //playChatEffect((int)message);
+                playChatEffect((string)message);
                 break;
         }
     }
 
-    //播放聊天音效
+    /*//播放聊天音效
     public void playChatEffect(int chattype)
     {
         AudioClip audioClip = Resources.Load<AudioClip>("Sound/Chat/Chat_" + chattype);
+        audioSource.clip = audioClip;
+        audioSource.Play();
+    }*/
+
+    //播放音效
+    public void playChatEffect(string path)
+    {
+        AudioClip audioClip = Resources.Load<AudioClip>("Sound/" + path);
         audioSource.clip = audioClip;
         audioSource.Play();
     }

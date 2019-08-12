@@ -40,12 +40,58 @@ public class FightHandler : HandlerBase
             case FightCode.TURN_LANDLORD_SBOD:
                 processTurnLandlord((int)message);
                 break;
+
+            case FightCode.GRAB_LANDLORD_SBOD:
+                processGrabLandlord(message as LandLordDto);
+                break;
         }
     }
 
-    //轮换抢地主
+    private void processGrabLandlord(LandLordDto landLordDto)
+    {
+        //播放抢地主声音
+        Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_Order");
+        //设置地主身份
+        Dispatch(AreoCode.UI, UIEvent.PLAYER_CHANGE_IDENTITY, landLordDto.UserId);
+        //设置底牌
+        Dispatch(AreoCode.UI, UIEvent.SET_TABLE_CARD, landLordDto.TableCardList);
+        //给地主发底牌
+        addTableCard(landLordDto);
+    }
+
+    private void addTableCard(LandLordDto landLordDto)
+    {
+        int uid = landLordDto.UserId;
+        if (uid == GameModles.Instance.userDto.ID)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.ADD_MY_TABLECARDS, landLordDto.TableCardList);
+        }
+        else if(uid == GameModles.Instance.matchRoomDto.Leftid)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.ADD_LEFT_TABLECARDS, landLordDto.TableCardList);
+        }
+        else if(uid == GameModles.Instance.matchRoomDto.Rightid)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.ADD_RIGHT_TABLECARDS, landLordDto.TableCardList);
+        }
+    }
+
+    /// <summary>
+    /// 是否是第一个人开始叫地主
+    /// </summary>
+    private bool isfirstturn = true;
+    //轮换抢地主(不叫)
     private void processTurnLandlord(int uid)
     {
+        if (isfirstturn)
+        {
+            isfirstturn = false;//第一次时不播放不叫的音效
+        }
+        else
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_NoOrder");
+        }
+
         if(uid == GameModles.Instance.userDto.ID)
         {
             Dispatch(AreoCode.UI, UIEvent.SHOW_GRAB_BUTTON, true);

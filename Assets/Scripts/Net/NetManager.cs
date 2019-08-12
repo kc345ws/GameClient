@@ -11,7 +11,7 @@ using Assets.Scripts.Net.implement;
 public class NetManager : ManagerBase {
     public static NetManager Instance = null;
 
-    private ClientPeer client = null;//服务器套接字
+    public static ClientPeer Client {get;private set; }//服务器套接字
 
     /*override是指“覆盖”，是指子类覆盖了父类的方法。子类的对象无法再访问父类中的该方法。
 new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过一定的转换，可以在子类的对象中访问父类的方法。*/
@@ -22,7 +22,7 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
         {
             //发送消息
             case NetEvent.SENDMSG:
-                client.SendMessage(message as SocketMsg);
+                Client.SendMessage(message as SocketMsg);
                 break;
 
             case NetEvent.RECEIVEMSG:
@@ -35,7 +35,7 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
 
     public NetManager()
     {
-        client = new ClientPeer("127.0.0.1", 59800);  
+        Client = new ClientPeer("127.0.0.1", 59800);  
     }
 
     void Awake()
@@ -47,8 +47,16 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
     }
     // Use this for initialization
     void Start () {
-        client.Connect();
+        Client.Connect();
 	}
+
+    public static void Connect()
+    {
+        if(Client.clientSocket.Connected == false)
+        {
+            Client.Connect();
+        }      
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -59,14 +67,14 @@ new是指“隐藏”，是指子类隐藏了父类的方法，当然，通过�
 
     private void receiveMessage()
     {
-        if (client.msgQueue.Count <= 0)
+        if (Client.msgQueue.Count <= 0)
         {
             return;
         }
 
-        while (client.msgQueue.Count > 0)
+        while (Client.msgQueue.Count > 0)
         {
-            SocketMsg msg = client.msgQueue.Dequeue();
+            SocketMsg msg = Client.msgQueue.Dequeue();
 
             //处理数据
             processMessage(msg);

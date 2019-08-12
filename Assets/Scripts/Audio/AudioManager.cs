@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class AudioManager : ManagerBase
 {
-    public const int PLAY_AUDIO = 0;
 
     public static AudioManager Instance = null;
 

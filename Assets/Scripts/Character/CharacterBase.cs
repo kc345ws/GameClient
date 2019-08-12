@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterBase : MonoBase
 {
+    private static Object Lock = new Object();
     /// <summary>
     /// 自身关心的消息集合
     /// </summary>
@@ -15,8 +16,11 @@ public class CharacterBase : MonoBase
     /// <param name="eventCodes">Event codes.</param>
     protected void Bind(params int[] eventCodes)
     {
-        list.AddRange(eventCodes);
-        CharacterManager.Instance.Add(list.ToArray(), this);
+        lock (Lock)
+        {
+            list.AddRange(eventCodes);
+            CharacterManager.Instance.Add(eventCodes, this);
+        }        
     }
 
     /// <summary>

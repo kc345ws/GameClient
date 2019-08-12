@@ -33,6 +33,7 @@ public class CardCtrl : MonoBehaviour
             IsSelected = false;
             transform.localPosition -= new Vector3(0, 0.3f, 0);
         }
+
         string path;
         if (!ismine)
         {

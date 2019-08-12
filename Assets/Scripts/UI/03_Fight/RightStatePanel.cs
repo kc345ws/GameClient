@@ -55,6 +55,11 @@ public class RightStatePanel : StatePanel
         }
     }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
     protected override void Update()
     {
         base.Update();

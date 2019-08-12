@@ -13,7 +13,7 @@ public class MyStatePanel : StatePanel
     private Button Button_Deal;//出牌
     private Button Button_NoDeal;//不出
 
-    private SocketMsg SocketMsg;
+    private SocketMsg socketMsg;
 
     public override void Execute(int eventcode, object message)
     {
@@ -79,7 +79,9 @@ public class MyStatePanel : StatePanel
     protected override void Start()
     {
         base.Start();
-        SocketMsg = new SocketMsg();
+
+        socketMsg = new SocketMsg();
+
         Button_Ready = transform.Find("Button_Ready").GetComponent<Button>();
         Button_Grab = transform.Find("Button_Grab").GetComponent<Button>();
         Button_NoGrab = transform.Find("Button_NoGrab").GetComponent<Button>();
@@ -119,18 +121,34 @@ public class MyStatePanel : StatePanel
         //显示已准备文字
         Text_Ready.gameObject.SetActive(true);
         //向服务器发送玩家准备
-        SocketMsg.Change(OpCode.MATCH, MatchCode.READY_CREQ, GameModles.Instance.userDto.ID);
-        Dispatch(AreoCode.NET, NetEvent.SENDMSG, SocketMsg);      
+        socketMsg.Change(OpCode.MATCH, MatchCode.READY_CREQ, GameModles.Instance.userDto.ID);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, socketMsg);      
     }
 
     private void grabBtnClicker()
     {
-
+        socketMsg.Change(OpCode.FIGHT, FightCode.GRAB_LANDLORD_CREQ, true);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, socketMsg);
+        setGrabButon(false);
     }
 
     private void nograbBtnClicker()
     {
+        socketMsg.Change(OpCode.FIGHT, FightCode.GRAB_LANDLORD_CREQ, false);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, socketMsg);
+        setGrabButon(false);
+    }
 
+    private void setGrabButon(bool active)
+    {
+        Button_Grab.gameObject.SetActive(active);
+        Button_NoGrab.gameObject.SetActive(active);
+    }
+
+    private void setDealButton(bool active)
+    {
+        Button_Deal.gameObject.SetActive(active);
+        Button_NoDeal.gameObject.SetActive(active);
     }
 
     private void dealBtnClicker()

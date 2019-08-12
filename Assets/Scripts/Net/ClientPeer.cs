@@ -9,7 +9,7 @@ using System;
 /// 客户端的封装
 /// </summary>
 public class ClientPeer{
-    private Socket clientSocket = null;
+    public Socket clientSocket = null;
 
     private string IP;
     private int Port;

@@ -44,7 +44,7 @@ public class InfoPanel : UIBase {
     /// </summary>
     private void refreshView(string name,int level,int exp,int money)
     {
-        //TODO 从服务器获取玩家信息
+        //从服务器获取玩家信息
         int Maxexp = level * 100;
         Text_Name.text = name;
         Text_Level.text = "Lv."+level.ToString();

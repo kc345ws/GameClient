@@ -186,6 +186,25 @@
       public const int PLAY_BG_AUDIO = 901;//背景音乐音效
     </content>
   </Code>
-  
+
+
+  <Code>
+    <name>CharacterEvent</name>
+    <range>1000-1099</range>
+    <content>
+      /// <summary>
+        /// 初始化自己角色的手牌
+        ///
+      </summary>
+      public const int INIT_MY_CARDLIST = 1000;
+      public const int INIT_LEFT_CARDLIST = 1001;
+      public const int INIT_RIGHT_CARDLIST = 1002;
+
+      //给自己的角色添加底牌
+      public const int ADD_MY_TABLECARDS = 1003;
+      public const int ADD_LEFT_TABLECARDS = 1004;
+      public const int ADD_RIGHT_TABLECARDS = 1005;
+    </content>
+  </Code>
   
 </Codes>

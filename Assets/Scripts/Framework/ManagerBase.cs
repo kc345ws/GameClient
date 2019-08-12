@@ -41,6 +41,11 @@ public class ManagerBase : MonoBase {
         List<MonoBase> monobases = dictionary[eventcode];
         for(int i = 0; i < monobases.Count; i++)
         {
+            if(monobases[i] == null)
+            {
+                monobases.Remove(monobases[i]);
+                continue;
+            }
             monobases[i].Execute(eventcode, message);
         }
     }

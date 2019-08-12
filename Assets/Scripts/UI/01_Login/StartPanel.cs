@@ -54,6 +54,7 @@ public class StartPanel : UIBase {
 
     private void loginBtnClicker()
     {
+        NetManager.Connect();
         if (string.IsNullOrEmpty(input_Account.text)
             ||string.IsNullOrEmpty(input_PWD.text))
         {

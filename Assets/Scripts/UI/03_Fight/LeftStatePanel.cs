@@ -28,6 +28,11 @@ public class LeftStatePanel:StatePanel
         Bind(UIEvent.SET_LEFT_PLAYER);
     }
 
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
+    }
+
     protected override void Start()
     {
         base.Start();

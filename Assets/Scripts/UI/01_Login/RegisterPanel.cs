@@ -57,6 +57,7 @@ public class RegisterPanel : UIBase {
 
     private void registerBtnClicker()
     {
+        NetManager.Connect();
         if (string.IsNullOrEmpty(input_Account.text))
         {
             MsgCenter.Instance.Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "帐号不能为空");
