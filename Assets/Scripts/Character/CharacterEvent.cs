@@ -16,5 +16,16 @@ public class CharacterEvent
     public const int ADD_MY_TABLECARDS = 1003;
     public const int ADD_LEFT_TABLECARDS = 1004;
     public const int ADD_RIGHT_TABLECARDS = 1005;
+
+    public const int DEAL_CARD = 1006;//角色出牌
+
+
+    //移除手牌
+    public const int REMOVE_MY_CARDS = 1007;
+    public const int REMOVE_LEFT_CARDS = 1008;
+    public const int REMOVE_RIGHT_CARDS = 1009;
+
+    //更新桌面的牌
+    public const int UPDATE_SHOW_dESK = 1010;
 }
 

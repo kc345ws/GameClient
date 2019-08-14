@@ -151,14 +151,19 @@ public class MyStatePanel : StatePanel
         Button_NoDeal.gameObject.SetActive(active);
     }
 
+    /// <summary>
+    /// 出牌按钮
+    /// </summary>
     private void dealBtnClicker()
     {
-
+        Dispatch(AreoCode.CHARACTER, CharacterEvent.DEAL_CARD, "角色出牌");
     }
 
     private void nodealBtnClicker()
     {
-
+        //向服务器发送不出
+        socketMsg.Change(OpCode.FIGHT, FightCode.DEAL_CREQ, false);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, "不出");
     }
 
     protected override void Update()

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Protocol.Constants;
+using Protocol.Code;
 
 /// <summary>
 /// 自己角色的控制器
@@ -10,19 +11,91 @@ using Protocol.Constants;
 public class MyCharacterCtrl : CharacterBase
 {
     private List<CardDto> myCardList;
-    private List<CardCtrl> CardCtrllist;
+    private List<CardCtrl> CardCtrllist;//卡牌控制器集合
     private Transform cardTransformParent;//卡牌的父物体
     private GameObject cardPrefab;
+
+    private SocketMsg socketMsg;
     // Start is called before the first frame update
     void Start()
     {
         Bind(CharacterEvent.INIT_MY_CARDLIST);
         Bind(CharacterEvent.ADD_MY_TABLECARDS);
+        Bind(CharacterEvent.DEAL_CARD);
+        Bind(CharacterEvent.REMOVE_MY_CARDS);
 
         myCardList = new List<CardDto>();
         CardCtrllist = new List<CardCtrl>();
         cardTransformParent = transform.Find("CardPoint");
         cardPrefab = Resources.Load<GameObject>("Card/MyCard");
+        socketMsg = new SocketMsg();
+    }
+
+    /// <summary>
+    /// 出所选中的牌
+    /// </summary>
+    private void dealSelectedCard()
+    {
+        DealDto dealDto = new DealDto(GameModles.Instance.userDto.ID, getSelectedCard());
+        if (dealDto.isRegular)
+        {          
+            socketMsg.Change(OpCode.FIGHT, FightCode.DEAL_CREQ, dealDto);
+            Dispatch(AreoCode.NET, NetEvent.SENDMSG, socketMsg);
+        }
+        else
+        {
+            Dispatch(AreoCode.UI, UIEvent.PROMPT_PANEL_EVENTCODE, "出牌不合法");
+        }
+    }
+
+    /// <summary>
+    /// 获取所选中的牌
+    /// </summary>
+    /// <returns></returns>
+    private List<CardDto> getSelectedCard()
+    {
+        List<CardDto> selectedCard = new List<CardDto>();
+        foreach (var item in CardCtrllist)
+        {
+            if(item.IsSelected == true)
+            {
+                selectedCard.Add(item.cardDto);
+            }
+        }
+        return selectedCard;
+    }
+
+    /// <summary>
+    /// 出牌成功时移除手牌
+    /// </summary>
+    /// <param name="restcardList">出牌后的剩余手牌</param>
+    private void removeSelectCard(List<CardDto> restcardList)
+    {
+        int index = 0;
+        if(restcardList.Count == 0)
+        {
+            return;//如果剩余手牌为0
+        }
+
+        foreach (var item in CardCtrllist)
+        {
+            item.Init(restcardList[index], true, index);
+            index++;
+            
+            if(index == restcardList.Count)
+            {
+                break;
+            }
+        }
+
+        for(int i = index; i < CardCtrllist.Count; i++)
+        {
+            if(CardCtrllist[i].gameObject != null)
+            {
+                CardCtrllist[i].IsSelected = false;
+                Destroy(CardCtrllist[i].gameObject);//销毁剩余卡牌之后的卡牌
+            }           
+        }
     }
 
     /// <summary>
@@ -94,6 +167,10 @@ public class MyCharacterCtrl : CharacterBase
 
             case CharacterEvent.ADD_MY_TABLECARDS:
                 addTableCard(message as List<CardDto>);
+                break;
+
+            case CharacterEvent.DEAL_CARD:
+                dealSelectedCard();
                 break;
         }
     }

@@ -28,6 +28,11 @@ public class FightHandler : HandlerBase
         {
 
             case FightCode.DEAL_SRES:
+                processDealSres((bool)message);
+                break;
+
+            case FightCode.DEAL_SBOD:
+                processDealSBOD(message as DealDto);
                 break;
 
             case FightCode.GET_CARD_SRES://服务器给客户端发牌
@@ -35,6 +40,7 @@ public class FightHandler : HandlerBase
                 break;
 
             case FightCode.PASS_SRES:
+                processPassSRES((bool)message);
                 break;
 
             case FightCode.TURN_LANDLORD_SBOD:
@@ -44,6 +50,62 @@ public class FightHandler : HandlerBase
             case FightCode.GRAB_LANDLORD_SBOD:
                 processGrabLandlord(message as LandLordDto);
                 break;
+
+            case FightCode.TURN_DEAL_SBOD:
+                processTurnDeal((int)message);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 处理跳过
+    /// </summary>
+    private void processPassSRES(bool active)
+    {
+        if (active)
+        {
+            Dispatch(AreoCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+        }
+    }
+
+    private void processDealSBOD(DealDto dealDto)
+    {
+        //移除手牌
+        int uid = dealDto.UserID;
+        if (uid == GameModles.Instance.userDto.ID)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.REMOVE_MY_CARDS, dealDto.remainCards);
+        }
+        else if (uid == GameModles.Instance.matchRoomDto.Leftid)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.REMOVE_LEFT_CARDS, dealDto.remainCards);
+        }
+        else if (uid == GameModles.Instance.matchRoomDto.Rightid)
+        {
+            Dispatch(AreoCode.CHARACTER, CharacterEvent.REMOVE_RIGHT_CARDS, dealDto.remainCards);
+        }
+        //将手牌显示在桌面上
+        Dispatch(AreoCode.CHARACTER, CharacterEvent.UPDATE_SHOW_dESK, dealDto.SelectCards);
+        //TODO播放音效
+    }
+
+    private void processDealSres(bool active)
+    {
+        if (active)
+        {
+            Dispatch(AreoCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+        }
+    }
+
+    /// <summary>
+    /// 处理转换出牌请求
+    /// </summary>
+    /// <param name="uid"></param>
+    private void processTurnDeal(int uid)
+    {
+        if(uid == GameModles.Instance.userDto.ID)
+        {
+            Dispatch(AreoCode.UI, UIEvent.SHOW_DEAL_BUTTON, true);
         }
     }
 

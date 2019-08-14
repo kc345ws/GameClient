@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Protocol.Dto.Fight;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class LeftCharacterCtrl : CharacterBase
     private GameObject cardPrefab;
     private int Index = 0;
     private static Object Lock = new Object();
-
+    private List<GameObject> OtherCardList;
 
     private void Awake()
     {
@@ -35,16 +36,49 @@ public class LeftCharacterCtrl : CharacterBase
     {
         Bind(CharacterEvent.INIT_LEFT_CARDLIST);
         Bind(CharacterEvent.ADD_LEFT_TABLECARDS);
+        Bind(CharacterEvent.REMOVE_LEFT_CARDS);
 
         cardTransformParent = transform.Find("CardPoint");
         cardPrefab = Resources.Load<GameObject>("Card/OtherCard");
+        OtherCardList = new List<GameObject>();
     }
 
     /// <summary>
-    /// 停顿使发牌有动画感
+    /// 出牌成功时移除手牌
     /// </summary>
-    /// <returns></returns>
-    private IEnumerator initPlayerCard()
+    /// <param name="restcardList">出牌后的剩余手牌</param>
+    private void removeSelectCard(List<CardDto> restcardList)
+    {
+        int index = 0;
+        if (restcardList.Count == 0)
+        {
+            return;//如果剩余手牌为0
+        }
+
+        foreach (var item in restcardList)
+        {
+            index++;
+
+            if (index == restcardList.Count)
+            {
+                break;
+            }
+        }
+
+        for (int i = index; i < OtherCardList.Count; i++)
+        {
+            if (OtherCardList[i].gameObject != null)
+            {
+                Destroy(OtherCardList[i].gameObject);//销毁剩余卡牌之后的卡牌
+            }
+        }
+    }
+
+        /// <summary>
+        /// 停顿使发牌有动画感
+        /// </summary>
+        /// <returns></returns>
+        private IEnumerator initPlayerCard()
     {
         for (int i = 0; i < 17; i++)
         {
@@ -71,6 +105,8 @@ public class LeftCharacterCtrl : CharacterBase
         GameObject card = GameObject.Instantiate(cardPrefab, cardTransformParent);
         card.transform.localPosition = new Vector2(index * 0.15f, 0);
         card.GetComponent<SpriteRenderer>().sortingOrder = index;
+
+        OtherCardList.Add(card);
     }
 
     // Update is called once per frame

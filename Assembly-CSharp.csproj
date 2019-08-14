@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Character\CharacterBase.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterEvent.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Character\DeskCtrl.cs" />
     <Compile Include="Assets\Scripts\Character\LeftCharacterCtrl.cs" />
     <Compile Include="Assets\Scripts\Character\MyCharacterCtrl.cs" />
     <Compile Include="Assets\Scripts\Character\RightCharacterCtrl.cs" />

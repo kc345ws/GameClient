@@ -8,10 +8,10 @@ using UnityEngine;
 /// </summary>
 public class CardCtrl : MonoBehaviour
 {
-    private CardDto cardDto;
-    private SpriteRenderer spriteRenderer;
+    public CardDto cardDto { get; private set; }//脚本控制的卡牌
+    private SpriteRenderer spriteRenderer;//卡牌的图片
     private bool IsMine;//是否是自己的牌
-    private bool IsSelected;//是否被选中
+    public bool IsSelected { get; set; }//卡牌是否被选中
 
     /// <summary>
     /// 初始化卡牌
@@ -51,11 +51,12 @@ public class CardCtrl : MonoBehaviour
     }
 
     private void OnMouseDown()
-    {
+    {    
         if (!IsMine)
         {
             return;
         }
+        Debug.Log("被点击");
 
         if (!IsSelected)//如果没被选中且被点击了
         {
@@ -63,7 +64,9 @@ public class CardCtrl : MonoBehaviour
             transform.localPosition += new Vector3(0, 0.3f, 0);
         }
         else
-        {         
+        {
+            //如果被选中了
+            IsSelected = false;
             transform.localPosition -= new Vector3(0, 0.3f, 0);
         }
     }
