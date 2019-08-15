@@ -15,6 +15,7 @@ public class SettingPanel : UIBase {
     private Slider Slider_Audio;
 
     private bool isShow = false;
+    private bool isBgmopen = true;
     // Use this for initialization
     void Start () {
         Button_Setting = transform.Find("Button_Setting").GetComponent<Button>();
@@ -30,6 +31,10 @@ public class SettingPanel : UIBase {
         Button_Close.onClick.AddListener(closeBtnClicker);
         Button_Quit.onClick.AddListener(quitBtnClcker);
 
+        Slider_Audio.onValueChanged.AddListener(changeBgmValue);
+        Toggle_isAudio.onValueChanged.AddListener(isBgm);
+        Toggle_isAudio.isOn = true;
+
         setObjectActive(isShow);
         Button_Setting.gameObject.SetActive(true);
     }
@@ -38,6 +43,32 @@ public class SettingPanel : UIBase {
 	void Update () {
 		
 	}
+
+    private void isBgm(bool active)
+    {
+        if (active)
+        {
+            isBgmopen = true;
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_BG_AUDIO, "打开背景音乐");
+        }
+        else
+        {
+            isBgmopen = false;
+            Dispatch(AreoCode.AUDIO, AudioEvent.STOP_BGM, "关闭背景音乐");
+        }
+    }
+
+    private void changeBgmValue(float value)
+    {
+        if (isBgmopen)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.CHANGE_BGM_VOLUME, value);
+        }
+        else
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.STOP_BGM, "关闭背景音乐");
+        }
+    }
 
     private void setObjectActive(bool active)
     {

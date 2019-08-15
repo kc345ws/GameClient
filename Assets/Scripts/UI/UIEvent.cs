@@ -50,4 +50,10 @@ public static class UIEvent{
     public const int LEFT_PLAYER_LOADED = 118;
     //右边玩家加载完成
     public const int RIGHT_PLAYER_LOADED = 119;
+
+    //显示结束面板
+    public const int SHOW_OVER_PANEL = 120;
+
+    //设置结束面板信息
+    public const int SET_OVER_PANEL_MESSAGE = 121;
 }

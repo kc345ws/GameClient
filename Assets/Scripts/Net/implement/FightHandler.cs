@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Net;
 using Protocol.Code;
+using Protocol.Constants;
 using Protocol.Dto.Fight;
 using System.Collections;
 using System.Collections.Generic;
@@ -54,7 +55,23 @@ public class FightHandler : HandlerBase
             case FightCode.TURN_DEAL_SBOD:
                 processTurnDeal((int)message);
                 break;
+
+            case FightCode.GAME_OVER_SBOD:
+                processGameOver(message as OverDto);
+                break;
+
         }
+    }
+
+    /// <summary>
+    /// 处理游戏结束
+    /// </summary>
+    private void processGameOver(OverDto overDto)
+    {
+        //显示结束面板
+        Dispatch(AreoCode.UI, UIEvent.SHOW_OVER_PANEL, true);
+        //设置信息并播放音效
+        Dispatch(AreoCode.UI, UIEvent.SET_OVER_PANEL_MESSAGE, overDto);
     }
 
     /// <summary>
@@ -65,6 +82,7 @@ public class FightHandler : HandlerBase
         if (active)
         {
             Dispatch(AreoCode.UI, UIEvent.SHOW_DEAL_BUTTON, false);
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_buyao1");
         }
     }
 
@@ -86,7 +104,214 @@ public class FightHandler : HandlerBase
         }
         //将手牌显示在桌面上
         Dispatch(AreoCode.CHARACTER, CharacterEvent.UPDATE_SHOW_dESK, dealDto.SelectCards);
-        //TODO播放音效
+        
+        //播放音效
+        if(dealDto.Type == CardType.SINGLE)
+        {
+            if(dealDto.Weight == CardWeight.THREE)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_3");
+            }
+            else if(dealDto.Weight == CardWeight.FOUR)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_4");
+            }
+            else if (dealDto.Weight == CardWeight.FIVE)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_5");
+            }
+            else if (dealDto.Weight == CardWeight.SIX)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_6");
+            }
+            else if (dealDto.Weight == CardWeight.SEVEN)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_7");
+            }
+            else if (dealDto.Weight == CardWeight.EIGHT)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_8");
+            }
+            else if (dealDto.Weight == CardWeight.NENE)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_9");
+            }
+            else if (dealDto.Weight == CardWeight.TEN)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_10");
+            }
+            else if (dealDto.Weight == CardWeight.JACK)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_11");
+            }
+            else if (dealDto.Weight == CardWeight.QUEEN)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_12");
+            }
+            else if (dealDto.Weight == CardWeight.KING)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_13");
+            }
+            else if (dealDto.Weight == CardWeight.A)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_14");
+            }
+            else if (dealDto.Weight == CardWeight.TWO)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_15");
+            }
+            else if (dealDto.Weight == CardWeight.SMALLJOKER)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_100");
+            }
+            else if (dealDto.Weight == CardWeight.BIGJOKER)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_200");
+            }
+        }
+        else if(dealDto.Type == CardType.DOUBLE)
+        {
+            if(dealDto.Weight == CardWeight.THREE * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui3");
+            }
+            else if (dealDto.Weight == CardWeight.FOUR * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui4");
+            }
+            else if (dealDto.Weight == CardWeight.FIVE * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui5");
+            }
+            else if (dealDto.Weight == CardWeight.SIX * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui6");
+            }
+            else if (dealDto.Weight == CardWeight.SEVEN * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui7");
+            }
+            else if (dealDto.Weight == CardWeight.EIGHT * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui8");
+            }
+            else if (dealDto.Weight == CardWeight.NENE * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui9");
+            }
+            else if (dealDto.Weight == CardWeight.TEN * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui10");
+            }
+            else if (dealDto.Weight == CardWeight.JACK * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui11");
+            }
+            else if (dealDto.Weight == CardWeight.QUEEN * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui12");
+            }
+            else if (dealDto.Weight == CardWeight.KING * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui13");
+            }
+            else if (dealDto.Weight == CardWeight.A * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui14");
+            }
+            else if (dealDto.Weight == CardWeight.TWO * 2)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_dui15");
+            }
+        }
+        else if (dealDto.Type == CardType.THREE_STRIGHT_FLIGHT)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_feiji");
+        }
+        else if (dealDto.Type == CardType.STRIGHT)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_shunzi");
+        }
+        else if (dealDto.Type == CardType.DOUBLE_STRIGHT || dealDto.Type == CardType.THREE_STRIGHT)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_liandui");
+        }
+        else if (dealDto.Type == CardType.THREE_ONE)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_sandaiyi");
+
+        }
+        else if (dealDto.Type == CardType.THREE_DOUBLE)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_sandaiyidui");
+        }
+        else if (dealDto.Type == CardType.FOUR_DOUBLE)
+        {
+            Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_sidaier");
+        }
+        else if (dealDto.Type == CardType.THREE)
+        {
+            if(dealDto.Weight == CardWeight.THREE * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple3");
+            }
+            else if (dealDto.Weight == CardWeight.FOUR * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple4");
+            }
+            else if (dealDto.Weight == CardWeight.FIVE * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple5");
+            }
+            else if (dealDto.Weight == CardWeight.SIX * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple6");
+            }
+            else if (dealDto.Weight == CardWeight.SEVEN * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple7");
+            }
+            else if (dealDto.Weight == CardWeight.EIGHT * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple8");
+            }
+            else if (dealDto.Weight == CardWeight.NENE * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple9");
+            }
+            else if (dealDto.Weight == CardWeight.TEN * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple10");
+            }
+            else if (dealDto.Weight == CardWeight.JACK * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple11");
+            }
+            else if (dealDto.Weight == CardWeight.QUEEN * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple12");
+            }
+            else if (dealDto.Weight == CardWeight.KING * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple13");
+            }
+            else if (dealDto.Weight == CardWeight.A * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple14");
+            }
+            else if (dealDto.Weight == CardWeight.TWO * 3)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_tuple15");
+            }
+            else if(dealDto.Type == CardType.BOOM)
+            {  
+                    Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_zhadan");
+            }
+            else if (dealDto.Type == CardType.JOKER_BOOM)
+            {
+                Dispatch(AreoCode.AUDIO, AudioEvent.PLAY_EFFECT_AUDIO, "Fight/Woman_wangzha");
+            }
+        }
     }
 
     private void processDealSres(bool active)

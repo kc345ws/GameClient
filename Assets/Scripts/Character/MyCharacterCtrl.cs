@@ -72,13 +72,14 @@ public class MyCharacterCtrl : CharacterBase
     private void removeSelectCard(List<CardDto> restcardList)
     {
         int index = 0;
-        if(restcardList.Count == 0)
+        /*if(restcardList.Count == 0)
         {
             return;//如果剩余手牌为0
-        }
+        }*/
 
         foreach (var item in CardCtrllist)
         {
+            CardWeight.SortCard(ref myCardList);
             item.Init(restcardList[index], true, index);
             index++;
             
@@ -90,7 +91,8 @@ public class MyCharacterCtrl : CharacterBase
 
         for(int i = index; i < CardCtrllist.Count; i++)
         {
-            if(CardCtrllist[i].gameObject != null)
+            CardWeight.SortCard(ref myCardList);
+            if (CardCtrllist[i]!=null && CardCtrllist[i].gameObject != null)
             {
                 CardCtrllist[i].IsSelected = false;
                 Destroy(CardCtrllist[i].gameObject);//销毁剩余卡牌之后的卡牌
@@ -171,6 +173,10 @@ public class MyCharacterCtrl : CharacterBase
 
             case CharacterEvent.DEAL_CARD:
                 dealSelectedCard();
+                break;
+
+            case CharacterEvent.REMOVE_MY_CARDS:
+                removeSelectCard(message as List<CardDto>);
                 break;
         }
     }

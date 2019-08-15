@@ -75,6 +75,7 @@ public class MyStatePanel : StatePanel
         base.readystate();
         Button_Ready.gameObject.SetActive(false);
     }
+
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -162,8 +163,8 @@ public class MyStatePanel : StatePanel
     private void nodealBtnClicker()
     {
         //向服务器发送不出
-        socketMsg.Change(OpCode.FIGHT, FightCode.DEAL_CREQ, false);
-        Dispatch(AreoCode.NET, NetEvent.SENDMSG, "不出");
+        socketMsg.Change(OpCode.FIGHT, FightCode.PASS_CREQ, false);
+        Dispatch(AreoCode.NET, NetEvent.SENDMSG, socketMsg);
     }
 
     protected override void Update()

@@ -11,6 +11,7 @@ public class DeskCtrl : CharacterBase
     private GameObject cardPrefab;
 
     private SocketMsg socketMsg;
+    private int LastNum = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,9 +38,9 @@ public class DeskCtrl : CharacterBase
 
     private void updateShowDesk(List<CardDto> cardlist)
     {
-        if(cardlist.Count > deskCardCtrllist.Count)
+        if(cardlist.Count > LastNum)
         {
-            //先在比原来多
+            //现在比原来多
             int index = deskCardCtrllist.Count;
 
             //复用先前创建的牌
@@ -53,7 +54,7 @@ public class DeskCtrl : CharacterBase
             for (int i = index; i < cardlist.Count; i++)
             {
                 GameObject card = GameObject.Instantiate(cardPrefab, cardTransformParent);
-                card.transform.localPosition = new Vector2(i * 0.2f, 0);
+                card.transform.localPosition = new Vector2(i * 0.08f, 0);
                 card.name = cardlist[i].Name;
                 CardCtrl cardCtrl = card.GetComponent<CardCtrl>();
                 cardCtrl.Init(cardlist[i], true, i);
@@ -62,8 +63,6 @@ public class DeskCtrl : CharacterBase
                 index++;
             }
         }
-
-
         else
         {
             //现在比原来少需要隐藏
@@ -72,6 +71,7 @@ public class DeskCtrl : CharacterBase
             foreach (var item in deskCardCtrllist)
             {
                 item.Init(cardlist[index], true, index);
+                deskCardCtrllist[index].name = cardlist[index].Name;
                 index++;
 
                 if (index == cardlist.Count)
@@ -82,13 +82,16 @@ public class DeskCtrl : CharacterBase
 
             for (int i = index; i < deskCardCtrllist.Count; i++)
             {
-                if (deskCardCtrllist[i].gameObject != null)
+                if (deskCardCtrllist[i]!=null && deskCardCtrllist[i].gameObject != null)
                 {
                     deskCardCtrllist[i].IsSelected = false;
-                    Destroy(deskCardCtrllist[i].gameObject);//销毁剩余卡牌之后的卡牌
+                    //Destroy(deskCardCtrllist[i].gameObject);//销毁剩余卡牌之后的卡牌
+                    deskCardCtrllist[i].gameObject.SetActive(false);
                 }
             }
         }
+
+        LastNum = cardlist.Count;
     }
 
     // Update is called once per frame

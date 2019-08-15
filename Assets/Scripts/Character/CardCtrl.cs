@@ -24,7 +24,7 @@ public class CardCtrl : MonoBehaviour
         //卡牌初始化
         this.cardDto = cardDto;
         this.IsMine = ismine;
-        IsSelected = false;
+        //IsSelected = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         //重用卡牌

@@ -172,6 +172,7 @@ fb6a1ea36b4f6ef5948d283d93760765 UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 5b0391b7e3d9ea9db6c0a8fbd0ca23f6 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.ButtonPanel
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DeskCtrl
 ee0cef6caaac8ae485bfa82f000f0f7b Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 5fc094978ce3e3591a7500ed380d854a Unity.Analytics.DataPrivacy.dll:UnityEngine.Analytics.DataPrivacyButton
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.CardCtrl
@@ -188,4 +189,5 @@ d791aa6007fa3640be1164ea75bb087d Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
 3165968ba45c74472d279ba04455fccb Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
 71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.MsgCenter
 8649814970b42d345b89944b862453cc Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
-71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.DeskCtrl
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.OverPanel
+71bb6a6b6c8f052f948db64c7dd3ca4f Assembly-CSharp.dll:.BgmManager

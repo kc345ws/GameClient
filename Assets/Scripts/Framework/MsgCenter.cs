@@ -19,6 +19,7 @@ public class MsgCenter : MonoBase {
         gameObject.AddComponent<SceneMgr>();
         gameObject.AddComponent<AudioManager>();
         gameObject.AddComponent<CharacterManager>();
+        gameObject.AddComponent<BgmManager>();
 
         DontDestroyOnLoad(gameObject);
     }

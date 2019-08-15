@@ -28,6 +28,10 @@ public class LeftCharacterCtrl : CharacterBase
             case CharacterEvent.ADD_LEFT_TABLECARDS:
                 addTableCard();
                 break;
+
+            case CharacterEvent.REMOVE_LEFT_CARDS:
+                removeSelectCard(message as List<CardDto>);
+                break;
         }
     }
 
@@ -50,10 +54,10 @@ public class LeftCharacterCtrl : CharacterBase
     private void removeSelectCard(List<CardDto> restcardList)
     {
         int index = 0;
-        if (restcardList.Count == 0)
+        /*if (restcardList.Count == 0)
         {
             return;//如果剩余手牌为0
-        }
+        }*/
 
         foreach (var item in restcardList)
         {

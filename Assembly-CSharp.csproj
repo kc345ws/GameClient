@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Audio\AudioBase.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioEvent.cs" />
     <Compile Include="Assets\Scripts\Audio\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\Audio\BgmManager.cs" />
     <Compile Include="Assets\Scripts\Audio\EffectAudio.cs" />
     <Compile Include="Assets\Scripts\Character\CardCtrl.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterBase.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\Scripts\UI\03_Fight\ButtonPanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\LeftStatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\MyStatePanel.cs" />
+    <Compile Include="Assets\Scripts\UI\03_Fight\OverPanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\RightStatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\StatePanel.cs" />
     <Compile Include="Assets\Scripts\UI\03_Fight\UpPanel.cs" />
